@@ -22,9 +22,6 @@ RSpec.configure do |c|
     FileUtils.remove_entry_secure(@puppetdir)
   end
 
-  #fixture_path = File.join(File.dirname(__FILE__), 'fixtures')
-  #module_path = File.join(fixture_path, 'modules')
   c.module_path = File.join(File.dirname(__FILE__), 'fixtures/modules')
-  #c.module_path = File.join(File.dirname(__FILE__), '../../')
 end
 
