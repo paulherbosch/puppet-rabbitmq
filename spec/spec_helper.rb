@@ -2,6 +2,11 @@ require 'puppet'
 require 'rspec-puppet'
 require 'tmpdir'
 
+def verify_contents(subject, title, expected_lines)
+  content = subject.resource('file', title).send(:parameters)[:content]
+  (content.split("\n") & expected_lines).should == expected_lines
+end
+
 RSpec.configure do |c|
   c.before :each do
     # Create a temporary puppet confdir area and temporary site.pp so
@@ -17,5 +22,6 @@ RSpec.configure do |c|
     FileUtils.remove_entry_secure(@puppetdir)
   end
 
-  c.module_path = File.join(File.dirname(__FILE__), '../../')
+  c.module_path = File.join(File.dirname(__FILE__), 'fixtures/modules')
 end
+

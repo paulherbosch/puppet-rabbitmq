@@ -1,0 +1,6 @@
+fixtures:
+  repositories:
+    "stdlib": "ssh://git@github.com/cegeka/puppet-stdlib.git"
+    "apt": "ssh://git@github.com/cegeka/puppet-apt.git"
+  symlinks:
+    "rabbitmq": "#{source_dir}"
