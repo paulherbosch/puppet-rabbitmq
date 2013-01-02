@@ -8,5 +8,5 @@ description 'This module manages RabbitMQ.'
 project_page 'http://github.com/cegeka/puppet-rabbitmq'
 
 ## Add dependencies, if any:
-dependency 'cegeka/stdlib', '>= 0.0.1'
-dependency 'puppetlabs/apt', '>= 0.0.3'
+dependency 'cegeka/puppet-stdlib', '>= 0.0.1'
+dependency 'cegeka/puppet-apt', '>= 0.0.1'
