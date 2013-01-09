@@ -10,3 +10,4 @@ project_page 'http://github.com/cegeka/puppet-rabbitmq'
 ## Add dependencies, if any:
 dependency 'cegeka/puppet-stdlib', '>= 0.0.1'
 dependency 'cegeka/puppet-apt', '>= 0.0.1'
+dependency 'cegeka/puppet-concat', '>= 0.0.2'
