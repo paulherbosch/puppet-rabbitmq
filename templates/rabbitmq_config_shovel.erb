@@ -1,0 +1,25 @@
+{<%= name %>,
+                    [ {sources,
+                        [ {brokers, [ "amqp://<%= shovel_source_broker %>"]}
+                        , {declarations, [ {'exchange.declare',
+                                              [ {exchange, <<"<%= shovel_source_exchange %>">>}
+                                              , {type, <<"direct">>}
+                                              , durable
+                                              ]}
+                                         , {'queue.declare', [{queue, <<"<%= shovel_source_queue %>">>}, durable]}
+                                         , {'queue.bind',
+                                              [ {exchange, <<"<%= shovel_source_exchange %>">>}
+                                              , {queue,    <<"<%= shovel_source_queue %>">>}
+                                              ]}
+                                         ]}
+                        ]}
+                    , {destinations, [ {broker, "amqp://"}]}
+                    , {queue, <<"<%= shovel_source_queue %>">>}
+                    , {prefetch_count, 10}
+                    , {ack_mode, on_confirm}
+                    , {publish_properties, [ {delivery_mode, 2} ]}
+                    , {publish_fields, [ {exchange, <<"<%= shovel_destination_exchange %>">>}
+                                       , {routing_key, <<>>}
+                                       ]}
+                    , {reconnect_delay, 5}
+                    ]}

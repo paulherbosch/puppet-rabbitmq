@@ -1,0 +1,1 @@
+{rabbit, [{cluster_nodes, [<%= cluster_disk_nodes.map { |n| "\'rabbit@#{n}\'" }.join(', ') %>]}]},
