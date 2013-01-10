@@ -60,7 +60,7 @@ describe 'rabbitmq::server' do
   	  { :node_ip_address => '172.0.0.1' }
   	end
     it 'should set RABBITMQ_NODE_IP_ADDRESS to specified value' do
-      verify_contents(subject, 'rabbitmq-env.config',
+      verify_contents(subject, 'file', 'rabbitmq-env.config',
         ['RABBITMQ_NODE_IP_ADDRESS=172.0.0.1'])
     end
   end
