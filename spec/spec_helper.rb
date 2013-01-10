@@ -2,8 +2,8 @@ require 'puppet'
 require 'rspec-puppet'
 require 'tmpdir'
 
-def verify_contents(subject, title, expected_lines)
-  content = subject.resource('file', title).send(:parameters)[:content]
+def verify_contents(subject, type, title, expected_lines)
+  content = subject.resource(type, title).send(:parameters)[:content]
   (content.split("\n") & expected_lines).should == expected_lines
 end
 
