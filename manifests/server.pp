@@ -10,6 +10,7 @@
 #  [*service_name*] - name of rabbitmq service
 #  [*service_ensure*] - desired ensure state for service
 #  [*node_ip_address*] - ip address for rabbitmq to bind to
+#  [*basedir*] - default directory for data, defaults to /var/lib/rabbitmq
 #  [*config*] - contents of config file. You can either provide this parameter,
 #               or use one of these: rabbitmq::config::shovel, rabbitmq::config::cluster, rabbitmq::config::stomp
 #  [*env_config*] - contents of env-config file
@@ -27,6 +28,7 @@ class rabbitmq::server (
   $service_name = 'rabbitmq-server',
   $service_ensure = 'running',
   $node_ip_address = 'UNSET',
+  $basedir = '/var/lib/rabbitmq',
   $config='UNSET',
   $env_config='UNSET',
 ) {
@@ -90,6 +92,20 @@ class rabbitmq::server (
     }
   }
 
+  file { $basedir:
+    ensure => directory,
+    owner  => 'rabbitmq',
+    group  => 'rabbitmq',
+    require => Package[$package_name]
+  }
+
+  file { "${basedir}/mnesia":
+    ensure => directory,
+    owner  => 'rabbitmq',
+    group  => 'rabbitmq',
+    require => Package[$package_name]
+  }
+
   if $env_config == 'UNSET' {
     $env_config_real = template("${module_name}/rabbitmq-env.conf.erb")
   } else {
@@ -110,6 +126,7 @@ class rabbitmq::server (
     owner   => '0',
     group   => '0',
     mode    => '0644',
+    require => File["${basedir}/mnesia"],
     notify  => Class['rabbitmq::service'],
   }
 
