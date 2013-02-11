@@ -1,6 +1,9 @@
 Puppet::Type.type(:rabbitmq_user_permissions).provide(:rabbitmqctl) do
 
-  commands :rabbitmqctl => 'rabbitmqctl'
+  has_command(:rabbitmqctl, 'rabbitmqctl') do
+     is_optional
+     environment :HOME => "/tmp"
+  end
   defaultfor :feature=> :posix
 
   #def self.instances
@@ -48,7 +51,7 @@ Puppet::Type.type(:rabbitmq_user_permissions).provide(:rabbitmqctl) do
     resource[:configure_permission] ||= "''"
     resource[:read_permission]      ||= "''"
     resource[:write_permission]     ||= "''"
-    rabbitmqctl('set_permissions', '-p', should_vhost, should_user, resource[:configure_permission], resource[:read_permission], resource[:write_permission]) 
+    rabbitmqctl('set_permissions', '-p', should_vhost, should_user, resource[:configure_permission], resource[:read_permission], resource[:write_permission])
   end
 
   def destroy
