@@ -1,6 +1,14 @@
 Puppet::Type.newtype(:rabbitmq_plugin) do
   desc 'manages rabbitmq plugins'
-
+  def initialize(*args)
+    super
+    self[:notify] = [
+      "Class[rabbitmq::service]"
+    ]
+    self[:require] = [
+      "Package[rabbitmq-server]"
+    ]
+  end
   ensurable do
     defaultto(:present)
     newvalue(:present) do
