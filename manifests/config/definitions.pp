@@ -1,6 +1,6 @@
 # Minimal rabbitMQ broker config: defines an exchange and a queue at startup of rabbitmq-server,
 # and binds the exchange to the queue.
-# 
+#
 # A json file with the definitions is created. In rabbitmq.config we create an entry
 # {load_definitions, "/path/to/our/json/file"}
 # so that the definitions get loaded when the rabbitMQ service starts.
