@@ -1,6 +1,6 @@
 Puppet::Type.type(:rabbitmq_plugin).provide(:rabbitmqplugins) do
 
-  has_command(:rabbitmqplugins, 'rabbitmq-plugins') do
+  has_command(:rabbitmqplugins, '/usr/lib/rabbitmq/bin/rabbitmq-plugins') do
      is_optional
      environment :HOME => "/tmp"
   end
