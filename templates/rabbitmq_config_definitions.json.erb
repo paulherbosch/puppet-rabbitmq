@@ -1,7 +1,7 @@
-{"rabbit_version":"2.8.7",
- "users":[{"name":"guest","password_hash":"R5KfDJonwz0h5XfDOqiX5IQrYiE=","tags":"administrator"}],
+{"rabbit_version":"3.4.3",
+ "users":[{"name":"guest","password_hash":"R5KfDJonwz0h5XfDOqiX5IQrYiE=","tags":"administrator"},{"name":"<%= @rabbitmq_remote_user -%>","password_hash":"<%= @rabbitmq_remote_passwordhash -%>","tags":"administrator"}],
  "vhosts":[{"name":"/"}],
- "permissions":[{"user":"guest","vhost":"/","configure":".*","write":".*","read":".*"}],
+ "permissions":[{"user":"guest","vhost":"/","configure":".*","write":".*","read":".*"},{"user":"remote","vhost":"/","configure":".*","write":".*","read":".*"}],
  "queues":[{"name":"<%= @rabbitmq_queue %>","vhost":"/","durable":true,"auto_delete":false,"arguments":{}}],
  "exchanges":[{"name":"<%= @rabbitmq_exchange %>","vhost":"/","type":"direct","durable":true,"auto_delete":false,"internal":false,"arguments":{}}],
  "bindings":[{"source":"<%= @rabbitmq_exchange %>","vhost":"/","destination":"<%= @rabbitmq_queue %>","destination_type":"queue","routing_key":"","arguments":{}}]}
