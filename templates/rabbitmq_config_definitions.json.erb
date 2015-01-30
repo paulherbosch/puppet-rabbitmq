@@ -1,5 +1,5 @@
 {"rabbit_version":"3.4.3",
- "users":[{"name":"guest","password_hash":"R5KfDJonwz0h5XfDOqiX5IQrYiE=","tags":"administrator"},{"name":"remote","password_hash":"R5KfDHPjb45PISMNQZptoHaDYfA=","tags":"administrator"}],
+ "users":[{"name":"guest","password_hash":"R5KfDJonwz0h5XfDOqiX5IQrYiE=","tags":"administrator"},{"name":"<%= @rabbitmq_remote_user -%>","password_hash":"<%= @rabbitmq_remote_passwordhash -%>","tags":"administrator"}],
  "vhosts":[{"name":"/"}],
  "permissions":[{"user":"guest","vhost":"/","configure":".*","write":".*","read":".*"},{"user":"remote","vhost":"/","configure":".*","write":".*","read":".*"}],
  "queues":[{"name":"<%= @rabbitmq_queue %>","vhost":"/","durable":true,"auto_delete":false,"arguments":{}}],
