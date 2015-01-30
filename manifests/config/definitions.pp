@@ -8,7 +8,7 @@
 # Parameters:
 #  [rabbitmq_exchange] - name of the rabbitMQ exchange
 #  [rabbitmq_queue]    - name of hte rabbitMQ queue
-class rabbitmq::config::definitions($rabbitmq_exchange = 'default_exchange', $rabbitmq_queue = 'default_exchange', $rabbitmq_remote_user = 'remote', $rabbitmq_remote_passwordhash = 'R5KfDH3Qk64C+8S5doDgp/R7E2w=') {
+class rabbitmq::config::definitions($rabbitmq_exchange = 'default_exchange', $rabbitmq_queue = 'default_queue', $rabbitmq_remote_user = 'remote', $rabbitmq_remote_passwordhash = 'R5KfDH3Qk64C+8S5doDgp/R7E2w=') {
 
   $rabbitmq_definitions_json = '/etc/rabbitmq/rabbitmq_definitions.json'
 
