@@ -93,16 +93,16 @@ class rabbitmq::server (
   }
 
   file { $basedir:
-    ensure => directory,
-    owner  => 'rabbitmq',
-    group  => 'rabbitmq',
+    ensure  => directory,
+    owner   => 'rabbitmq',
+    group   => 'rabbitmq',
     require => Package[$package_name]
   }
 
   file { "${basedir}/mnesia":
-    ensure => directory,
-    owner  => 'rabbitmq',
-    group  => 'rabbitmq',
+    ensure  => directory,
+    owner   => 'rabbitmq',
+    group   => 'rabbitmq',
     require => Package[$package_name]
   }
 
