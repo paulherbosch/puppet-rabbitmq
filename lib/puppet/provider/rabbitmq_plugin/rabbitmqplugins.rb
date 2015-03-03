@@ -8,10 +8,11 @@ Puppet::Type.type(:rabbitmq_plugin).provide(:rabbitmqplugins) do
 
   def self.instances
     rabbitmqplugins('list', '-E').split(/\n/).map do |line|
-      if line.split(/\s+/)[1] =~ /^(\S+)$/
-        new(:name => $1)
+      output = line.match(/^\[E.\]\s(\S+)\s+.\..\..$/)
+      if output
+        new(:name => output[1])
       else
-        raise Puppet::Error, "Cannot parse invalid plugins line: #{line}"
+        info("Cannot parse invalid plugins line: #{line}")
       end
     end
   end
@@ -26,7 +27,10 @@ Puppet::Type.type(:rabbitmq_plugin).provide(:rabbitmqplugins) do
 
   def exists?
     out = rabbitmqplugins('list', '-E').split(/\n/).detect do |line|
-      line.split(/\s+/)[1].match(/^#{resource[:name]}$/)
+      plugin = line.match(/^\[E.\]\s(\S+)\s+.\..\..$/)
+      if plugin
+        plugin[1].match(/^#{resource[:name]}$/)
+      end
     end
   end
 
