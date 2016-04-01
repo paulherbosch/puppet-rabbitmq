@@ -33,8 +33,6 @@ class rabbitmq::server (
   $env_config='UNSET',
 ) {
 
-  include concat::setup
-
   validate_bool($delete_guest_user)
   validate_re($port, '\d+')
 
