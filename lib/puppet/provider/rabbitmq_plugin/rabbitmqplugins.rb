@@ -8,7 +8,7 @@ Puppet::Type.type(:rabbitmq_plugin).provide(:rabbitmqplugins) do
 
   def self.instances
     rabbitmqplugins('list', '-E').split(/\n/).map do |line|
-      output = line.match(/^\[E.\]\s(\S+)\s+.\..\..$/)
+      output = line.match(/^\[E\s*\]\s(\S+)\s+.\..\..$/)
       if output
         new(:name => output[1])
       else
