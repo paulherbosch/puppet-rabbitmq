@@ -8,7 +8,7 @@ Puppet::Type.type(:rabbitmq_plugin).provide(:rabbitmqplugins) do
 
   def self.instances
     rabbitmqplugins('list', '-E').split(/\n/).map do |line|
-      output = line.match(/^\[E.\]\s(\S+)\s+.\..\..$/)
+      output = line.match(/^\[E\s*\]\s(\S+)\s+.\..\..$/)
       if output
         new(:name => output[1])
       else
@@ -27,7 +27,7 @@ Puppet::Type.type(:rabbitmq_plugin).provide(:rabbitmqplugins) do
 
   def exists?
     out = rabbitmqplugins('list', '-E').split(/\n/).detect do |line|
-      plugin = line.match(/^\[E.\]\s(\S+)\s+.\..\..$/)
+      plugin = line.match(/^\[E\s*\]\s(\S+)\s+.\..\..$/)
       if plugin
         plugin[1].match(/^#{resource[:name]}$/)
       end
