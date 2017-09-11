@@ -31,6 +31,7 @@ class rabbitmq::server (
   $basedir = '/var/lib/rabbitmq',
   $config='UNSET',
   $env_config='UNSET',
+  $connection_loglevel = 'error'
 ) {
 
   validate_bool($delete_guest_user)
